@@ -1,0 +1,812 @@
+/*****************************************************************
+
+Global Arch PHP Themes
+
+Technology  : CSS, CSS2, CSS3, LESS.
+			  Visit http://lesscss.org/ for more information about
+			  less.
+
+Based on    : Twitter's CSS Framework - Bootstrap
+			  visit http://twitter.github.com/bootstrap/
+		   
+Creator     : DwAN
+
+Last update : July, 11 2012
+
+******************************************************************/
+
+
+// Get the base-url variable from javascript, see layout/main.php 
+// @base-url:`base_url`;
+// Compile using SimpleLESS 
+@base-url:"..";
+
+
+// Icons path
+@white-icon:"@{base-url}/img/icons/white";
+@black-icon:"@{base-url}/img/icons/black";
+@color-icon:"@{base-url}/img/icons/color";
+
+
+// Base Fonts
+
+@sans-serif:"Arimo", sans-serif;
+@serif:"Tinos", serif;
+@monospace:"Droid Sans Mono", monospace;
+
+
+// Base colours
+
+@white:#fff;
+
+@black:#000;
+@gray-darker:lighten(@black, 10%);
+@gray-dark:lighten(@black, 25%);
+@gray:lighten(@black, 50%);
+@gray-light:lighten(@black, 70%);
+@gray-lighter:lighten(@black, 90%);
+
+@orange:#F93;
+@orange-light:lighten(@orange, 15%);
+@orange-dark:darken(@orange, 20%);
+
+@yellow:yellow;
+@yellow-light:#FEFBF3;
+
+@cyan:#08b5fb;
+
+@sky-blue:#5DABD9;
+
+@blue:darken(@sky-blue, 25%);
+@blue-light:lighten(@blue, 15%);
+@blue-dark:darken(@blue, 20%);
+
+
+// Fonts Mixins and Classes
+
+.sans-serif { font-family:@sans-serif }
+.serif { font-family:@serif; font-size:1.1em }
+.monospace { font-family:@monospace }
+
+
+// CSS3 Mixins
+
+.border-radius (@var:5px) {
+	-webkit-border-radius:@var;
+	-khtml-border-radius:@var;
+	-moz-border-radius:@var;
+	-ms-border-radius:@var;
+	-o-border-radius:@var;
+	border-radius:@var;
+}
+.box-shadow (@var) {
+	-webkit-box-shadow:@var;
+	-khtml-box-shadow:@var;
+	-moz-box-shadow:@var;
+	-ms-box-shadow:@var;
+	-o-box-shadow:@var;
+	box-shadow:@var;
+}
+.box-shadow-ie (@var) {
+	-webkit-box-shadow:@var;
+	-khtml-box-shadow:@var;
+	-moz-box-shadow:@var;
+	-ms-box-shadow:@var;
+	-o-box-shadow:@var;
+	box-shadow:@var;
+	filter:~"progid:DXImageTransform.Microsoft.Shadow(color='#666666', Direction=180, Strength=5)";
+}
+.user-select (@var) {
+	-webkit-user-select:@var; 
+	-khtml-user-select:@var; 
+	-moz-user-select:@var; 
+	-ms-user-select:@var; 
+	-o-user-select:@var; 
+	user-select:@var;
+}
+.transition (@range:all, @time:1s, @ease:ease-in-out) {
+	-webkit-transition:@range @time @ease;
+	-khtml-transition:@range @time @ease;
+	-moz-transition:@range @time @ease;
+	-ms-transition:@range @time @ease;
+	-o-transition:@range @time @ease;
+	transition:@range @time @ease;
+}
+.animation (@var) {
+	-webkit-animation:@var;
+	-khtml-animation:@var;
+	-moz-animation:@var;
+	-ms-animation:@var;
+	-o-animation:@var;
+	animation:@var;
+}
+.opacity (@var) {
+	@var-houndred:@var * 100;
+	-webkit-opacity:@var;
+	-khtml-opacity:@var;
+	-moz-opacity:@var;
+	-ms-opacity:@var;
+	-o-opacity:@var;
+	opacity:@var;
+	// filter:~"alpha(opacity=@{var-houndred})";
+	// -ms-filter:~"alpha(opacity=@{var-houndred})";
+}
+.gradient-background (@from, @to) {
+	background:url("@{base-url}/img/grad-up.png") 0 0 repeat-x;
+	background-color:@from;
+	background-image:-webkit-linear-gradient(top, @from, @to);
+	// background-image:-webkit-gradient(linear, left top, left bottom, color-stop(0%, @from), color-stop(100%, @to));
+	// background-image:-khtml-linear-gradient(top, @from, @to);
+	// background-image:-khtml-gradient(linear, left top, left bottom, from(@from), to(@to));
+	background-image:-moz-linear-gradient(top, @from, @to);
+	background-image:-ms-linear-gradient(top, @from, @to);
+	background-image:-o-linear-gradient(top, @from, @to);
+	background-image:linear-gradient(top, @from, @to);
+	// filter:~"progid:DXImageTransform.Microsoft.gradient(startColorstr='@{from}', endColorstr='@{to}', GradientType=0)";
+	// -ms-filter:~"progid:DXImageTransform.Microsoft.gradient(startColorstr='@{from}', endColorstr='@{to}', GradientType=0)";
+}
+.absolute-width (@var) { 
+	// min-width:@var; 
+	width:@var; 
+	// max-width:@var 
+}
+.absolute-height (@var) { 
+	// min-height:@var; 
+	height:@var; 
+	// max-height:@var 
+}
+
+/** general **/
+
+@media all {
+	/* Most commont class and elemet */
+	
+	body, html, div, table, tr, td, ul, ol, li, span { margin:0; padding:0; outline-style:none; border:none }
+
+	p,
+	div, li, td, th,
+	input, label, select, button, legend { font-family:@sans-serif; margin:0; padding:0; outline-style:none; border:none; color:@gray-dark }
+
+	html, body { height:100%; width:100% }
+	body { opacity:0; .transition(opacity, 0.5s); font-size:80% }
+	a { text-decoration:none; color:@blue-light }
+	p { padding:5px 0; line-height:150% }
+	strong { font-weight:bold }
+	em { font-style:italic }
+	u { text-decoration:underline }
+	s, strike { text-decoration:line-through; color:@gray }
+	small, sub, sup { font-size:0.8em }
+
+	code, pre { font-family:@monospace; overflow:auto; padding:15px; margin:10px 0 15px; background-color:@yellow-light; display:block; .box-shadow(0 0 3px @gray); .border-radius(2px) }
+
+	/* you don't need more dan 4 header, unless you are crazy */
+	.h1, h1 { font-family:@sans-serif; margin:0; font-size:1.8em; padding:15px 0 10px; text-shadow:0 1px 2px rgba(255,255,255,0.85) }
+	.h2, h2 { font-family:@sans-serif; margin:0; font-size:1.6em; padding:11px 0 5px; text-shadow:0 1px 2px rgba(255,255,255,0.85) }
+	.h3, h3 { font-family:@sans-serif; margin:0; font-size:1.4em; padding:9px 0 4px; text-shadow:0 1px 2px rgba(255,255,255,0.85) }
+	.h4, h4 { font-family:@sans-serif; margin:0; font-size:1.2em; padding:7px 0 2px; text-shadow:0 1px 2px rgba(255,255,255,0.85); color:@gray; font-style:italic }
+
+	.clear { clear:both; .absolute-width(0); display:block }
+	.left { float:left }
+	.right { float:right }
+	
+	.debug { border:1px solid red }
+
+	// #caltitle select { width:70px; min-width:50px; margin-left:5px }
+}
+
+/** xinix framework **/
+
+@media screen {
+	/* Main layout, the one who hold them up */
+	
+	.layout { min-width:950px; background-color:darken(@white, 2.5%) }
+	.login { 
+		.gradient-background (@sky-blue, lighten(@sky-blue, 20%));
+		
+		.pop-message { top:10px }
+	}
+	
+	
+	/* Cloud Animation, don't change this, please */
+	
+	.cloud1 { width:100%; min-height:100%; background:url("@{base-url}/img/cloud3.png") 50% -200px repeat }
+	.cloud2 { width:100%; min-height:100%; background:url("@{base-url}/img/cloud3.png") 50%    0   repeat }
+	.cloud3 { width:100%; min-height:100%; background:url("@{base-url}/img/cloud1.png") 50%  200px repeat }
+	.cloud4 { width:100%; min-height:100%; background:url("@{base-url}/img/cloud1.png") 50%  400px repeat }
+	.cloud5 { width:100%; min-height:100%; background:url("@{base-url}/img/cloud2.png") 50%  600px repeat }
+	.cloud6 { width:100%; min-height:100%; background:url("@{base-url}/img/cloud2.png") 50%  800px repeat }
+
+	.safari, .chrome {
+		.cloud1 { .animation(bgslide1 180s infinite linear) }
+		.cloud2 { .animation(bgslide2 140s infinite linear) }
+		.cloud3 { .animation(bgslide3 140s infinite linear) }
+		.cloud4 { .animation(bgslide1  60s infinite linear) }
+		.cloud5 { .animation(bgslide2  20s infinite linear) }
+		.cloud6 { .animation(bgslide3 140s infinite linear) }
+	}
+	
+	
+	/* Common layout */
+	
+	.layout-header { 
+		padding:0; .opacity(0.95); background:url("@{base-url}/img/drop-shadow.png") 0 bottom repeat-x; height:50px; position:absolute; top:0; left:0; width:100%; z-index:99999;
+		
+		.wrapper { display:table; width:100%; .gradient-background(lighten(@blue,15%), @blue) }
+	}
+
+
+	/* Top navigation */
+	// Some Variable and Mixin
+	@padding-menu:~"0 15px";
+	.text-colours { color:@gray-lighter }
+
+	.top-nav { 
+		padding:0; margin:0; text-align:left; height:30px; display:table; float:left;
+		
+		ul {
+			list-style:none; display:block; padding:0; .border-radius(0 0 5px 5px);
+			
+			li { 
+				.transition(background-color, 0.15s, linear); display:block; float:left; height:30px; position:relative;
+				
+				li { float:none; display:block; border-top:1px solid darken(@white, 60%) }
+				a { text-decoration:none; .text-colours; line-height:30px; padding:@padding-menu; display:block; .transition(color, 0.25s, linear) }
+				a.hover { color:@white }
+
+				// for li rounded corner menu
+				.first { border:none; .border-radius(0 5px 0 0)  }
+				.last { .border-radius(0 0 5px 5px) }
+				.has-children:after { .text-colours; content:"»"; .opacity(0.5); line-height:30px; float:right; margin:-30px 10px 0 }
+				// end for li
+			}
+
+			/* Sub menu positioning */
+			ul { display:none; z-index:10000 }
+			li.hover { 
+				ul { display:block; position:absolute; background-color:@gray-dark; margin:0; width:210px; padding:0; .box-shadow(0 0 10px rgba(0,0,0,0.65)) }
+				ul ul { display:none; left:210px; margin-top:-30px; .border-radius(0 5px 5px 5px) }
+				ul li.hover ul { display:block }
+			}
+			
+			// for li positioning
+			.flexible a { display:none }
+			.space { width:100%; background:none }
+			.hover { background-color:@blue }
+			.status { 
+				background:none; 
+				
+				span, p, a, em, strong, i { .text-colours }
+				span { display:block; padding:@padding-menu; line-height:30px; cursor:default }
+				span span { display:inline-block; padding:0 }
+			}
+			// end for li
+
+			.icn-home a { background:url("@{white-icon}/24/53-house.png") 50% 50% no-repeat; display:block; text-indent:-9999px; direction:ltr; width:50px; padding:0 }        	
+		}
+	}
+	.top-nav-right {
+		float:right;
+
+		ul {
+			li.first a { background:none; display:block; text-indent:0; width:auto; padding:@padding-menu }
+			li.hover ul { right:0 }
+			
+			.user-sys > a {  padding-left:41px; background:url("@{white-icon}/16/111-user.png") 20px 50% no-repeat }
+		}
+	}
+	
+	/* Layout body */
+
+	.layout-body { 
+		padding:50px 20px;
+	
+		.container-show { min-width:500px }
+		> .wrapper { text-align:left; margin:0 auto; display:table; width:100% }
+	}
+	
+
+	/* Icons */
+	
+	.icons { 
+		display:table; width:100%;
+		
+		> div { 
+			float:left; width:33%;
+			
+			a { color:#2B9BCF; font-size:1.1em; font-weight:bold; background:url("@{base-url}/img/icn_instaled.png") center 0 no-repeat; text-align:center; padding:210px 0 20px; width:200px; margin:0 auto; display:block; .border-radius(10px); .transition(all, 0.2s) }
+			a:hover { text-decoration:none; background-color:#eee; .box-shadow(0 3px 10px rgba(0,0,0,0.35) inset) }
+			a strong { color:#f60 }
+		}
+		> .active a { background-image:url("@{base-url}/img/icn_active.png") }
+		> .inactive a { background-image:url("@{base-url}/img/icn_inactive.png") }
+	}
+
+	.two-fieldset { display:table; width:100% }
+	.two-fieldset fieldset { width:45%; max-width:45%; height:110px }
+
+
+	/* Common footer */
+	
+	.layout-footer { 
+		position:relative;
+		
+		a { color:#ff6; font-weight:bold }
+		.footer-copyright { 
+			.opacity(0.85); .gradient-background(darken(@blue,10%), lighten(@blue,5%)); .box-shadow(0 0 20px rgba(0,0,0,0.5)); padding:0; bottom:0; position:absolute; width:100%;
+			
+			p { .opacity(0.9); color:#fff; font-size:0.8em; text-align:center; line-height:27px; height:25px; padding:0; margin:0; overflow:hidden }
+			a { color:#fc0 }
+		}
+	}
+	
+	
+	/* The Content */
+	
+	.the-content {
+		display:table; width:100%;
+
+		/* Common class and tags */
+
+		p { padding:5px 0 }
+		hr { margin:20px 0; .absolute-height(0); border-bottom:1px solid @white; border-top:1px solid @gray-lighter }
+		code, pre { padding:15px; border:none }
+		ul, ol { 
+			padding:5px 0 5px 20px;
+			
+			li { padding:0 0 3px }
+		}
+		ol { list-style:numeric }
+		a.hover { text-decoration:underline }
+		
+		
+		/* Form Elements */
+		
+		// Button - toolbar
+		.button { 
+			float:left; padding:3px 10px; margin:0; cursor:pointer; .gradient-background (darken(@white, 5%), darken(@white, 20%)); color:@gray-dark; text-shadow:0 1px 1px @white; border:1px solid; border-color:darken(@white, 10%) darken(@white, 10%) darken(@white, 25%); border-color:rgba(0, 0, 0, 0.025) rgba(0, 0, 0, 0.15) rgba(0, 0, 0, 0.35);
+			
+			&.first { .border-radius(5px 0 0 5px) }
+			&.last { .border-radius(0 5px 5px 0) }
+			&.first.last { .border-radius(5px) }
+			&.hover, &:hover { text-decoration:none; background-color:darken(@white, 30%); .gradient-background (darken(@white, 10%), darken(@white, 30%)) }
+			&.pressed { .box-shadow(~"0 2px 5px rgba(0,0,0,0.5) inset") }
+	
+			span { display:inline-block; background:transparent left center no-repeat; line-height:16px; }
+			.import    {  padding-left:21px; background-image:url("@{black-icon}/16/40-inbox.png") }
+			.add       {  padding-left:21px; background-image:url("@{black-icon}/16/187-pencil.png") }
+			.delete    {  padding-left:21px; background-image:url("@{black-icon}/16/184-warning.png") }
+		}
+		
+		// Mixins for common fieldset and Fieldset
+		.common-fieldset { 
+			border:1px solid @gray-lighter; padding:30px 20px 10px; margin:30px 0 10px; background-color:darken(@white, 4%); position:relative;
+			
+			div,
+			div.hover { 
+				display:table; padding-bottom:10px; background-color:transparent;
+				
+				.button { margin-left:200px }
+				div { display:block; padding:0 }
+			}
+			legend { position:absolute; background-color:@orange; .gradient-background(lighten(@orange, 25%), @orange); color:@white; padding:5px 40px; text-shadow:0 -1px rgba(0,0,0,0.35); font-size:1.1em; margin:-45px 0 0 200px; .border-radius(5px); .box-shadow(0 1px 3px @gray-light); cursor:default }
+			label { .absolute-width(180px); line-height:25px; display:inline-block; margin-right:5px; text-align:right; text-shadow:0 1px 1px @white; font-weight:bold }
+		} 
+		fieldset { .common-fieldset }
+		
+		// Class and Mixins for common action buttons row
+		.action-buttons { 
+			padding:20px 20px 20px 220px; background-color:darken(@white, 7%); border:1px solid darken(@white, 13%); .border-radius(0 0 15px 15px);
+			
+			.button { 
+				float:none; margin:0 5px 0 0; .border-radius(5px);
+				
+				span { 
+					background:transparent 0 50% no-repeat;
+				
+					&.ok     { padding-left:20px; background-image:url("@{black-icon}/16/13-target.png")  }
+					&.back   { padding-left:21px; background-image:url("@{black-icon}/prev.png") }
+				}
+			}
+		}
+		
+		// The form
+		form {
+			label { 
+				.absolute-width(180px); line-height:25px; display:block; float:left; margin-right:5px; padding-right:15px; text-align:right; text-shadow:0 1px 1px @white;
+				
+				&.mandatory { background:url("@{base-url}/img/asterisk.gif") right 0 no-repeat }
+			}
+			.submit, .reset, .button, button { 
+				display:inline-block; background-color:@blue-light; .gradient-background (@blue-light, @blue); color:@white; text-shadow:0 -1px 1px rgba(0,0,0,0.65); padding:5px 20px; margin:0 5px 0 0; cursor:pointer; .border-radius(~"5px"); border:1px solid; border-color:fadein(@blue, 10%) fadein(@blue, 10%) fadein(@blue, 25%); border-color:rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25); .transition(background,0.25s);
+				
+				&.hover { .gradient-background (darken(@blue-light, 10%), darken(@blue, 10%)) }
+				&.pressed { .box-shadow(0 2px 5px rgba(0,0,0,0.5) inset) }
+			}
+			.submit { padding-left:40px; padding-right:40px }
+			.button, button, .reset { 
+				float:none; background-color:darken(@white, 20%); .gradient-background (@white, darken(@white, 20%)); color:@gray-dark; text-shadow:0 1px 1px @white; border-color:darken(@white, 10%) darken(@white, 10%) darken(@white, 25%); border-color:rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+		
+				&.hover { background-color:darken(@white, 30%); .gradient-background (darken(@white, 10%), darken(@white, 30%)) }
+			}
+			input.text, input.email, input.password,
+			select,
+			textarea { 
+				font-size:1em; .absolute-width(300px); .absolute-height(25px); padding:3px; margin:0 5px 5px 0; color:@gray-dark; background:@white url("@{base-url}/img/bg-input.png") repeat-x 0px 0px; border-top:solid 1px #aaa; border-left:solid 1px #aaa; border-bottom:solid 1px @gray-light; border-right:solid 1px @gray-light; outline:0; .border-radius(3px); .absolute-width(400px);
+
+				&.x-small   { .absolute-width(50px) }
+				&.small     { .absolute-width(100px) }
+				&.medium    { .absolute-width(200px) }
+				&.large     { .absolute-width(400px) }
+				&.x-large   { .absolute-width(800px) }
+				
+				&.hover { .box-shadow(0 0 5px lighten(@blue-light, 35%)) }
+				&.focus { .box-shadow(0 0 5px @blue-light); border-color:@gray; background:@white url("@{base-url}/img/bg-input-focus.png") 0 0 repeat-x }
+			}
+			input.password { font-family:sans-serif }
+			select.multiple,
+			textarea { .absolute-height(150px) }
+			div.radio { margin-bottom:8px }
+			input.placeholder { color:@gray-light }
+			fieldset,
+			fieldset.hover { .common-fieldset }
+			
+			/* Tiny MCE layout */
+			#body_parent, #body_container { float:left }
+			.wysiwyg { .absolute-width(600px); .absolute-height(400px) }
+		}
+		
+		
+		/* Layouting, not for ie */
+		
+		.layout-flexible {
+			display:table; padding:0 0 5px; width:100%; vertical-align:top;
+			
+			div { display:block }
+			.layout-flexible { display:table }
+			.wrap { padding:5px; display:block }
+			
+			.fifths, .quarter, 
+			.thirds, .half, 
+			.auto { padding:0; display:table-cell; vertical-align:top }
+			
+			.fifths 	{ width:20% 	}
+			.quarter 	{ width:25% 	}
+			.thirds 	{ width:100%/3 	}
+			.half 		{ width:50% 	}
+			.auto 		{ width:auto 	}
+		}
+	
+
+		/* Breadcrumb */
+	
+		.breadcrumb { 
+			list-style:none; float:left; height:20px; padding:0; margin:5px 0 0; display:table;
+	
+			li { 
+				display:inline; padding:0 10px 0 15px; background:url("@{black-icon}/nav.png") left center no-repeat;
+				
+				a { color:@black; line-height:16px; text-decoration:none }
+				a:hover { color:@blue; cursor:pointer }
+			}
+			.selected a { background:@gray-light none }
+			.first { background:none; padding:0 10px 0 0 }
+			.first a { background:url("@{black-icon}/16/53-house.png") 0 50% no-repeat; padding:0 0 0 21px }
+			.last { padding-right:0 }
+			.last a { color:@gray }
+		}
+	
+	
+		/* Common table grid */
+	
+		table { font-size:1em }
+		table.grid { 
+			border-collapse:collapse; width:100%; border:1px solid @gray-lighter; margin:0 0 10px;
+			
+			tr { 
+				border-top:1px solid @gray-lighter;
+				
+				th .checker,
+				td .checker { margin:0 }
+				
+				/* Colorize cell */
+				th              { .gradient-background (darken(@white, 2.5%), darken(@white, 12.5%)) }
+				&.odd td        { background-color:darken(@white, 4%) }
+				&.even td       { background-color:transparent }
+				&.selected td   { background-color:lighten(@orange, 35%) }
+				&.hover td      { background-color:lighten(@blue, 60%) }
+				
+				&.last td       { border-bottom:none }
+				
+				th { 
+					padding:7px 10px; overflow:hidden; font-size:1.1em; font-weight:bold; text-align:left; border-right:1px solid @gray-lighter; .user-select(none);
+					
+					span, 
+					a { text-decoration:none; color:#444; font-weight:bold; display:inline-block; white-space:nowrap; text-shadow:0 1px 1px @white }
+					a { color:@blue }
+					a:hover { color:@blue-light }
+					span { font-size:1em }
+					.asc,
+					.desc { color:@blue; padding-right:18px; background:url("@{color-icon}/up.png") 100% 50% no-repeat }
+					.asc { background-image:url("@{color-icon}/down.png") }
+				}
+				
+				td { 
+					border-right:1px solid @gray-lighter; vertical-align:middle; font-size:1em; border-bottom:1px solid @gray-lighter; padding:5px 10px; overflow:hidden; .transition(background-color, 0.25s);
+					
+					> table { display:table }
+					a { text-decoration:underline }
+					a img { padding:0 5px }
+					
+					&.last a,
+					&.last p,
+					&.last span { white-space:nowrap }
+				}
+			}
+			
+			&.zebra {
+				border:none;
+			
+				tr, th, td { border:none }
+				
+				tr { 
+					/* Colorize cell */
+					th              { background-color:darken(@white, 6%); .gradient-background (transparent, transparent) }
+					&.odd td        { background-color:transparent }
+					&.even td       { background-color:darken(@white, 5%) }
+					&.selected td   { background-color:lighten(@orange, 35%) }
+					&.hover td      { background-color:lighten(@blue, 65%) }
+				}
+			}
+			
+			&.stripe {
+				border:none;
+			
+				tr, tr.last, th, td { border:none }
+				tr { 
+					border-bottom:1px solid @gray-lighter;
+					
+					th { .gradient-background (transparent, transparent) }
+				}
+			}
+			
+			/* Predefine cell width */
+			.xx-short   { .absolute-width( 20px) }
+			.x-short    { .absolute-width( 50px) }
+			.short      { .absolute-width(100px) }
+			.medium     { .absolute-width(150px) }
+			.wide       { .absolute-width(200px) }
+			.auto       { .absolute-width( auto) }
+		}
+		
+		
+		/* Grid system */
+	
+		.grid-top, 
+		.grid-bottom { padding:10px 0 }
+		.grid-container { padding:0; .absolute-width(100%) }
+	
+	
+		/* Paging and Setting */
+		
+		.grid-bottom {
+			display:table; width:100%;
+			
+			.page-changer,
+			.pagination {  white-space:nowrap; display:table-cell; width:50%; padding:10px 0; background:none }
+			p,
+			a { font-size:1em }
+			
+			.pagination {
+				li.next a,
+				li.prev a { text-indent:-9999px; direction:ltr; display:block; padding:0; width:24px; background:transparent 50% 50% no-repeat }
+				li.next a { background-image:url("@{black-icon}/next.png") }
+				li.prev a { background-image:url("@{black-icon}/prev.png") }
+			}
+			.pagination ul { float:right }
+			.page-changer ul { float:left }
+			
+			.pagination,
+			.page-changer {
+				span { padding:3px 5px 3px 0 }
+				ul  { list-style:none; display:block; padding:0; margin:0 }
+				ul li {
+					display:inline-block; float:left; padding:3px 5px; margin:0; cursor:pointer; .gradient-background (darken(@white, 30%), darken(@white, 10%)); color:@gray-dark; text-shadow:0 1px 1px @white; border:1px solid; border-color:darken(@white, 25%) darken(@white, 10%) darken(@white, 10%); border-color:rgba(0, 0, 0, 0.25) rgba(0, 0, 0, 0.15) rgba(0, 0, 0, 0.025);
+					
+					a { color:@gray; font-size:0.85em; padding:3px 10px; text-decoration:none }
+					 
+					&.first { .border-radius(5px 0 0 5px) }
+					&.last { .border-radius(0 5px 5px 0) }
+					&.first.last { .border-radius(5px) }
+					&.selected,
+					&.hover { 
+						.gradient-background (darken(@white, 10%), darken(@white, 30%)); border-color:darken(@white, 10%) darken(@white, 10%) darken(@white, 25%); border-color:rgba(0, 0, 0, 0.025) rgba(0, 0, 0, 0.15) rgba(0, 0, 0, 0.35); text-decoration:none;
+						
+						a { color:@gray-dark }
+					}
+					&.pressed { .box-shadow(0 2px 5px rgba(0,0,0,0.5) inset) }
+				}
+			}
+
+		}
+	
+		.header { margin:0; padding:0 }
+		
+
+		/* Search style */
+		
+		.grid-top .right { width:300px }
+	
+		.filter-container { 
+			float:right; width:300px;
+			
+			select { .absolute-width(150px); .absolute-height(20px); margin:3px 10px 0 }
+			.search { 
+				padding:4px 12px 4px; margin:0; background:@white url("@{base-url}/img/bg-input.png") repeat-x 0 0; border:solid 1px @gray-light; border-left:solid 1px @gray-light; border-bottom:solid 1px @gray-lighter; border-right:solid 1px @gray-lighter; display:table; float:right; .border-radius(100px);
+				
+				&.hover,
+				&.selected { .box-shadow(0 0 5px @blue-light) }
+				
+				a { padding:0; margin:0; color:transparent; text-indent:-9999px; direction:ltr; background:url("@{black-icon}/clear.png") 0 0 no-repeat; width:16px; height:16px; overflow:hidden; display:block; float:left }
+
+				.text { background:none; .absolute-width(200px); .absolute-height(15px); line-height:16px; border:none; margin:0; padding:0; display:block; float:left; width:200px; min-width:200px; max-width:200px; .box-shadow(none) }
+			}
+		}
+		
+	
+		/* Search result */
+	
+		.highlight-phrase { background-color:#ff9; border:1px solid #cc0; padding:2px 3px; display:inline-block }
+	}
+	.fancybox-inner {
+		fieldset legend { margin-left:0 }
+		.action-buttons  { padding-left:20px }
+	}
+	
+	
+	/* Login Area */
+
+	.login #layout-body { width:100%; height:100%; padding:0; display:table }
+	.login #layout-body > .wrapper { width:100%; height:100%; display:table-cell; vertical-align:middle }
+
+	.login-pane { 
+		width:350px; height:312px; margin:0 auto; position:absolute; z-index:9999;
+		
+		p { text-align:center; padding:10px 0 0; color:@gray; border-top:1px dotted @gray-light }
+		.title { margin:10px 0; text-align:center; font-size:2.6em; color:@orange; text-shadow:0 1px 2px #fff; padding:10px 0 }
+		.title strong { font-weight:normal; font-size:1.4em; line-height:20px; color:@blue; text-shadow:0 1px 2px #fff }
+		h2 { color:@gray; padding:10px 0 25px; text-align:center; font-size:1.6em; text-shadow:0 1px 2px #fff }
+		form { 
+			padding:30px 40px; background:url("@{base-url}/img/login-box.png") center -150px repeat-x; border:1px solid @gray-light; .border-radius(15px); .box-shadow-ie(0 15px 125px rgba(1, 1, 1, 0.5));
+			
+			label { display:none; .absolute-width(235px); text-align:right; font-size:0.9em; color:@gray; padding:0 0 3px; font-weight:normal; margin:0 0 0 20px }
+			input.text,
+			input.password { .absolute-width(235px); .absolute-height(30px); padding:5px; font-size:1.2em; margin:0 0 0 15px; float:none }
+			input.submit { width:146px; font-size:1.4em; padding:5px 50px; margin:0 0 0 60px; float:none }
+			
+			div, div.hover { padding:0; background:none; border:none }
+
+			.login-form div  { padding:5px 0; display:table; width:100% }
+			.login-form .logo { padding:0 }
+
+			.last { padding:10px 0; display:block }
+
+			.system-time { text-align:center; padding:0 0 30px }
+			.system-time span { color:@gray; text-shadow:0 1px 1px #fff }
+		}
+	}
+	.accessdenied { .animation(shake 1s 1 linear) }
+	
+	
+	/* A Tooltip */
+	
+	.tooltip { z-index:29101983; display:none; color:#fff; text-align:center; position:relative; padding:5px 12px 4px; margin:-10px 0 0; background:@gray-dark; max-width:175px; .border-radius(10px); .box-shadow(0 1px 3px rgba(0,0,0,0.35)) }
+	.tooltip:after { content:""; position:absolute; bottom:-7px; left:50%; margin:0 0 0 -7px; border-width:7px 7px 0 7px; border-style:solid; border-color:@gray-dark transparent; display:block; width:0 }
+	
+	
+	/* Message error and info */
+	
+	.pop-message { 
+		z-index:10000; width:100%; top:40px; position:absolute; .opacity(0.9);
+		
+		.content { margin:0 auto; padding:7px 10px 7px 20px; display:table; border-color:#eedc94 #eedc94 #e4c652; border-color:rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25); background-repeat:repeat-x; .gradient-background (#fceec1, #eedc94); .box-shadow(0 2px 5px rgba(0,0,0,0.5)); .border-radius }
+		.text { float:left }
+		.text,
+		.text p { line-height:20px; font-size:12px; color:#404040; text-shadow:0 1px 0 rgba(255, 255, 255, 0.5) }
+		.text p { padding:0 5px; display:inline-block }
+		.close { float:right; text-align:right; margin-left:25px; font-size:18px; line-height:20px; font-weight:bold; color:#404040; .opacity(0.4); cursor:pointer }
+		.close:hover { .opacity(0.75) }
+	}
+	
+	.error .content { border-color:#c43c35 #c43c35 #882a25; background-repeat:repeat-x; border-color:rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25); .gradient-background(#ee5f5b, #c43c35) }
+	.error .text,
+	.error .text p { color:@white; text-shadow:0 -1px 0 rgba(0, 0, 0, 0.25) }
+
+
+	/* Loading */
+	
+	#loading { z-index:999999; position:absolute; width:220px; height:19px; background:url("@{base-url}/img/loader.gif") no-repeat; .border-radius(7px); .opacity(0.7); display:none }
+	
+
+	/* Generic context menu styles */
+	
+	.contextMenu { 
+		position:absolute; width:120px; z-index:99999; border:solid 1px @gray-light; background:#EEE; padding:0px; margin:0px; display:none; .box-shadow(3px 3px 3px @gray);
+		
+		li { list-style:none; padding:0; margin:0 }
+		a { color:#333; text-decoration:none; display:block; line-height:20px; height:20px; background-position:6px center; background-repeat:no-repeat; outline:none; padding:1px 5px; padding-left:28px; font-weight:normal }
+		li.hover a { color:@white; background-color:#3399FF }
+		li.disabled a { color:#AAA; cursor:default }
+		li.hover.disabled a { background-color:transparent }
+		li.separator { border-top:solid 1px @gray-light }
+	}
+
+	/*
+		Adding Icons to toolbar and contextmenu
+	
+		You can add icons to the context menu by adding
+		classes to the respective LI element(s)
+	*/
+
+	.submenu,
+	.contextMenu {
+		text-align:center;
+
+		span { float:left }
+		a { background:center no-repeat; width:16px; height:16px; overflow:hidden; display:block; text-indent:-9999px; direction:ltr; margin:0 0 0 5px }
+
+		.container { display:table }
+		
+		.preview a      { background-image:url("@{color-icon}/16/icon_view.png") }
+		.left a         { background-image:url("@{color-icon}/16/back_alt.png") }
+		.right a        { background-image:url("@{color-icon}/16/forward_alt.png") }
+		.up a           { background-image:url("@{color-icon}/16/up_alt.png") }
+		.down a         { background-image:url("@{color-icon}/16/down_alt.png") }
+			
+		.edit a         { background-image:url("@{color-icon}/16/edit.png") }
+		.delete a       { background-image:url("@{color-icon}/16/minus_white.png") }
+		.cut a          { background-image:url("@{color-icon}/16/cut.png") }
+		.copy a         { background-image:url("@{color-icon}/16/copy.png") }
+		.paste a        { background-image:url("@{color-icon}/16/paste.png") }
+		
+		.detail a       { background-image:url("@{color-icon}/16/info.png") }
+		.add_image a    { background-image:url("@{color-icon}/16/picture.png") }
+		
+		/* No icon */
+		.print a        { background-image:url("@{color-icon}/16/print.png") }
+		
+		.revoke a       { background-image:url("@{color-icon}/16/minus_white.png") }
+		.quit a         { background-image:url("@{color-icon}/16/stop.png") }
+		.view a         { background-image:url("@{color-icon}/16/search.png") }
+		.entry a        { background-image:url("@{color-icon}/16/edit.png") }
+	}
+	
+	
+	/* Tagging on post */
+	
+	#tags-holder {
+		float:left; display:table;
+		
+		> div { display:none }
+		.tag-show { display:block; float:left; border:1px solid @gray-lighter; background-color:@white; line-height:25px; height:25px; color:@gray; margin:0 5px 0 0; padding:0 30px 0 10px; position:relative }
+		.tag-show a { position:absolute; top:5px; right:5px; background:url("@{black-icon}/clear.png") no-repeat; width:16px; height:16px; text-indent:-9999px; direction:ltr; overflow:hidden }
+	}
+	
+	
+	
+	/* Ajax search result auto complete */
+	
+	.ac_results { z-index:99999; .opacity(0.9); margin-top:10px; padding:2px; background-color:@gray-dark; font-size:1em; border:1px solid @gray-darker; .border-radius(5px); .box-shadow(0 0 5px @gray) }
+	.ac_results:before { content:""; position:absolute; margin:-9px 0 0 27px; border-width:0 7px 7px 7px; border-style:solid; border-color:@gray-dark transparent; display:block; width:0 }
+	.ac_results ul { width:100%; list-style-position:outside; list-style:none; padding:0; margin:0 }
+	.ac_results li { 
+		margin:0; padding:2px 5px; cursor:default; display:block; .border-radius;
+		// if width will be 100% horizontal scrollbar will apear when scroll mode will be used
+		// width:100%;
+		// it is very important, if line-height not setted or setted in relative units scroll will be broken in firefox
+		line-height:16px; overflow:hidden; color:@white 
+	}
+	.ac_results li { a, em, strong, span { color:@yellow } }
+	.ac_odd { background-color:lighten(@gray-dark, 5%) }
+	.ac_over { background-color:lighten(@blue,20%) }
+	.ac_loading { background:white url("@{base-url}/img/indicator.gif") right center no-repeat }
+}

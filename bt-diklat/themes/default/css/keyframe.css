@@ -1,0 +1,35 @@
+/*****************************************************************
+
+CSS3 Keyframe Animation
+
+Technology  : CSS, CSS2, CSS3
+           
+Owner       : DwAN
+
+Last update : January, 4 2012
+
+******************************************************************/
+
+/* Shaking to the left and right */
+@keyframes shake { 0% { margin-left:0px } 16.6% { margin-left:-20px } 49.8% { margin-left:20px } 83% { margin-left:-20px } 100% { margin-left:0px } }
+@-o-keyframes shake { 0% { margin-left:0px } 16.6% { margin-left:-20px } 49.8% { margin-left:20px } 83% { margin-left:-20px } 100% { margin-left:0px } }
+@-ms-keyframes shake { 0% { margin-left:0px } 16.6% { margin-left:-20px } 49.8% { margin-left:20px } 83% { margin-left:-20px } 100% { margin-left:0px } }
+@-moz-keyframes shake { 0% { margin-left:0px } 16.6% { margin-left:-20px } 49.8% { margin-left:20px } 83% { margin-left:-20px } 100% { margin-left:0px } }
+@-webkit-keyframes shake { 0% { margin-left:0px } 16.6% { margin-left:-20px } 49.8% { margin-left:20px } 83% { margin-left:-20px } 100% { margin-left:0px } }
+
+/* Background moving for cloud animation in login */
+@keyframes bgslide1 { 0% { background-position-x:1477px } 100% { background-position-x:0px } }
+@keyframes bgslide2 { 0% { background-position-x:1477px } 100% { background-position-x:0px } }
+@keyframes bgslide3 { 0% { background-position-x:1477px } 100% { background-position-x:0px } }
+@-o-keyframes bgslide1 { 0% { background-position-x:1477px } 100% { background-position-x:0px } }
+@-o-keyframes bgslide2 { 0% { background-position-x:1477px } 100% { background-position-x:0px } }
+@-o-keyframes bgslide3 { 0% { background-position-x:1477px } 100% { background-position-x:0px } }
+@-ms-keyframes bgslide1 { 0% { background-position-x:1477px } 100% { background-position-x:0px } }
+@-ms-keyframes bgslide2 { 0% { background-position-x:1477px } 100% { background-position-x:0px } }
+@-ms-keyframes bgslide3 { 0% { background-position-x:1477px } 100% { background-position-x:0px } }
+@-moz-keyframes bgslide1 { 0% { background-position-x:1477px } 100% { background-position-x:0px } }
+@-moz-keyframes bgslide2 { 0% { background-position-x:1477px } 100% { background-position-x:0px } }
+@-moz-keyframes bgslide3 { 0% { background-position-x:1477px } 100% { background-position-x:0px } }
+@-webkit-keyframes bgslide1 { 0% { background-position-x:1477px } 100% { background-position-x:0px } }
+@-webkit-keyframes bgslide2 { 0% { background-position-x:1477px } 100% { background-position-x:0px } }
+@-webkit-keyframes bgslide3 { 0% { background-position-x:1477px } 100% { background-position-x:0px } }

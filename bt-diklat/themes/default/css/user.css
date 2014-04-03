@@ -1,0 +1,25 @@
+/* This is arch styles */
+/* Don't delete this lines if you dont merge this to global.css */
+
+.component-placeholder { display: inline }
+
+/* This is user custom styles */
+/* You can delete all this */
+
+/*.layout-flexible div div { border:1px solid #f5f5f5 }*/
+#layouting-example .layout-flexible div div { text-align:center; }
+
+.top-nav ul li li.icn a { background: 10px no-repeat; white-space: normal; background-position:12px 7px; padding-left:41px; background-image:url("../img/icons/white/16/20-gear2.png") }
+/* Top Menu icons */
+.top-nav ul li li.icn-system a   { background-image:url("../img/icons/white/16/20-gear2.png") }
+.top-nav ul li li.icn-user a     { background-image:url("../img/icons/white/16/145-persondot.png") }
+.top-nav ul li li.icn-profile a      { background-image:url("../img/icons/white/16/112-group.png") }
+.top-nav ul li li.icn-profile-page a { background-image:url("../img/icons/white/16/123-id-card.png") }
+.top-nav ul li li.icn-change-password a { background-image:url("../img/icons/white/16/123-id-card.png") }
+.top-nav ul li li.icn-menu a         { background-image:url("../img/icons/white/16/104-index-cards.png") }
+.top-nav ul li li.icn-post a         { background-image:url("../img/icons/white/16/44-shoebox.png") }
+.top-nav ul li li.icn-logout a       { background-image:url("../img/icons/white/16/63-runner.png") }
+
+
+.grid-bottom .span6 { display: table; width: 50% }
+.grid-bottom .span6 .pagination { width: 100%;  }
